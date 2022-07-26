@@ -1,28 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+  <SphHeader/>
+  <router-view></router-view>
+  <SphFooter v-show="$route.meta.showFooter" />
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SphHeader from './components/Header'
+import SphFooter from './components/Footer'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: {SphHeader, SphFooter},
+  mounted() {
+    this.$store.dispatch("home/getCategoryList");
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
